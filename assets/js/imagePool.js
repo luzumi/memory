@@ -12,7 +12,7 @@ const imagePool = {
     createImagePool: function() {
         const images = [];
         for (let index = 0; index < 15; index++) {
-            images.push(`img/set${ globalState.setId() }/${index}.png`);
+            images.push(`img/set${ globalState.setId }/${index}.png`);
         }
         return images;
     }

@@ -25,7 +25,7 @@ export const domMapping = {
             if (img) {
                 img.src = `${globalState.getImgHeader()}${index}.png`;
                 img.height = this.imageHeight;
-                img.width = this.imageHeight;
+                img.width = this.imageHeight??150;
                 img.alt = ("memory"[index]).toUpperCase();
             }
         }
@@ -35,7 +35,7 @@ export const domMapping = {
         globalState.elements.grid = [];
 
         const shuffledImages = this.shuffleImages();
-        console.log(shuffledImages);
+
         for (let i = 0; i < globalState.gridSize; i++) {
             if(this.shouldSkipPosition(i, globalState.gridSize)) {
                 const div = this.createElementDynamical(globalState.elements.playground, 'div', 'free', null, DOM_METHOD.APPEND_CHILD);
@@ -51,7 +51,7 @@ export const domMapping = {
                 img.dataset.frontSrc = shuffledImages[i];
                 img.width = 150;
             }
-            this.imageHeight = img.offsetWidth;
+            this.imageHeight = img.offsetWidth??150;
             globalState.elements.grid.push(div);
         }
     },
