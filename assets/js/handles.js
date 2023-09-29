@@ -14,7 +14,9 @@ const handles = {
 
         let img = evt.currentTarget.querySelector('img');
         const imgIds = globalState.clickedImage.map(imgElement => imgElement.id);
-        if (imgIds === img.id) return;
+        if (imgIds.includes(img.id)) return;
+        if (img.src.includes('founded')) return;
+
 
         handles.toggleTimer();
 
@@ -22,7 +24,7 @@ const handles = {
 
         // Wenn zwei Karten aufgedeckt sind, Timer neu starten
         if (globalState.clickedImage.length === 2) {
-            handles.flipTimeout = setTimeout(() => handles.handleCardMatch(), 4000);
+            handles.flipTimeout = setTimeout(() => handles.handleCardMatch(), globalState.waitingTime);
         }
     },
     handleCardMatch: function () {
