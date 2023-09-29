@@ -1,0 +1,134 @@
+body {
+    /* background-image: url('img/wallpaper.png'); */
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center center;
+}
+
+#score {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: fantasy;
+    font-weight: 900;
+    font-size: 2em;
+    color: rgb(170, 112, 135);
+    background-color: #aaa;
+}
+
+#memory-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 30px;
+}
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #aaa;
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+
+#header img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.memory-letter {
+    width: 16.66vh;
+    height: 16.66vh;
+    z-index: 10000;
+    margin: 0 5px;
+}
+
+#first {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    flex-direction: column;
+}
+
+
+#playground-container {
+    position: relative;
+    justify-content: center;
+    align-items: center;
+}
+
+#win-message {
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    font-family: fantasy;
+    font-weight: 900;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3em;
+    color: black;
+    display: none;
+    z-index: 1000;
+}
+
+.Playground {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    grid-gap: 10px;
+    justify-content: center;
+    align-items: center;
+    width: 70vh;
+}
+
+.card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #aaa;
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+}
+
+.Playground div {
+    background-color: #aaa;
+    border-radius: 10px;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+#win-message.blink {
+    animation: blink 1s infinite;
+}

@@ -1,0 +1,15 @@
+export const globalState = {
+  elements: {},
+  gameStartTime: null,
+  lastMousePosition: { x: 0, y: 0 },
+  clickedImage: [],
+  allFounded: false,
+  globalGameTime: 0,
+  images: [],
+  score: 0,
+  gridSize: 4,
+  setId: () => '1',
+  getImages: () => `img/set${globalState.setId()}/`,
+  getBackgrounds: () => `img/set${globalState.setId()}/backgrounds/`,
+  getImgHeader: () => `img/set${globalState.setId()}/header/`,
+};
