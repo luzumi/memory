@@ -1,7 +1,9 @@
 export const globalState = {
   elements: {},
+  userName: 'Unbekannt',
   gridSize: 8,
   setId: 1,
+  timerId: null,
   waitingTime: 1000,
   gameStartTime: null,
   lastMousePosition: { x: 0, y: 0 },
@@ -10,6 +12,7 @@ export const globalState = {
   globalGameTime: 0,
   images: [],
   score: 0,
+  sortedScores: 0,
   getImages: () => `img/set${globalState.setId}/`,
   getBackgrounds: () => `img/set${globalState.setId}/backgrounds/`,
   getImgHeader: () => `img/set${globalState.setId}/header/`,

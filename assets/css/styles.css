@@ -1,5 +1,5 @@
 :root {
-    --primary-background-color: #3498db;
+    --primary-background-color: rgb(137, 129, 125, 0.85);
     --menu-background-color: #aaa;
     --menu-text-color: rgb(170, 112, 135);
     --win-message-color: #c11818;
@@ -29,6 +29,14 @@ body {
 }
 
 /*region menu*/
+#runtime-container {
+    width: 100%;
+    background-color: var(--menu-background-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
 #menu-container {
     position: relative;
 
@@ -51,24 +59,63 @@ body {
     color: var(--menu-text-color);
     font-weight: bolder;
     border-radius: 10px;
-    width: 6rem;  /* Breite erhöht */
-    height: 6rem; /* Höhe erhöht */
+    width: 3rem;  /* Breite erhöht */
+    height: 3rem; /* Höhe erhöht */
     overflow: hidden;
     margin: 10px;
     position: relative; /* Absolut positioniert */
-    bottom: 5rem; /* Oben im Elternelement */
-    left: 8rem; /* Rechts im Elternelement */
+    bottom: 1rem; /* Oben im Elternelement */
+    left: 1rem; /* Rechts im Elternelement */
 }
 
-.restart-button {
-    background-color: var(--primary-background-color);
-    color: white;
+#menu-container {
+    position: absolute; /* Absolut positioniert */
+    top: 50%; /* Zentriert vertikal */
+    left: 50%; /* Zentriert horizontal */
+    transform: translate(-50%, -50%); /* Korrektes Zentrieren */
+    z-index: 1000; /* Über anderen Elementen */
+    background-color: var(--primary-background-color); /* Halbtransparenter Hintergrund */
+    width: 400px; /* Feste Breite */
+    height: 300px; /* Feste Höhe */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.slider-container {
+    display: flex;
+    flex-direction: row; /* nebeneinander */
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+/* Ändere den Slider, um wie ein Mischpult-Rad auszusehen */
+input[type="range"] {
+    /* Dein Styling hier */
+}
+
+.slider-container span {
+    /* Digitales Display */
+    background-color: black;
+    color: green;
+    padding: 5px;
+    margin-top: 5px;
+    font-family: 'Digital-7 Mono', monospace;
+}
+
+.restart-button,
+.toggle-ranking-button {
+    width: 100%; /* Über die gesamte Breite */
+    margin-top: 20px;
+}
+
+.toggle-ranking-button {
+    background-color: var(--menu-background-color);
     border: none;
-    padding: 10px;
-    border-radius: 4px;
-    cursor: pointer;
 }
-
 /*endregion*/
 
 /*region memory-Letters(Header)*/
@@ -173,7 +220,7 @@ body {
     font-size: 3em;
     color: var(--win-message-color);
     display: none;
-    z-index: 1000;
+    z-index: 500;
 }
 #win-message.blink {
     animation: blink 1s infinite;

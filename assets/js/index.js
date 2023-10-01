@@ -1,5 +1,5 @@
 'use strict';
-import imagePool from "./imagePool.js";
+import ImagePool  from "./imagePool.js";
 import { globalState } from './globalState.js';
 import domMapping from "./domMapping.js";
 import { AnimateHeader } from "./animateHeader.js";
@@ -8,7 +8,7 @@ import { AnimateHeader } from "./animateHeader.js";
 
 
 const init = () => {
-    const imagesFromPool = imagePool.createImagePool(globalState.setId);
+    const imagesFromPool = ImagePool.createImagePool(globalState.setId);
 
     if (Array.isArray(imagesFromPool)) globalState.images = imagesFromPool;
     else return;

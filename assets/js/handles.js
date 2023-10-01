@@ -1,4 +1,5 @@
 import { globalState } from './globalState.js';
+import domMapping from "./domMapping.js";
 
 const handles = {
     flipTimeout: null,
@@ -36,8 +37,10 @@ const handles = {
         handles.checkWin();
     },
     checkWin: function () {
+        console.log('checkWin', document.querySelector('#win-message'));
         const allFounded = Array.from(document.querySelectorAll('.Playground img')).every(img => img.src.includes('founded'));
         if (allFounded) {
+            clearInterval(globalState.timerId);
             const gameEndTime = new Date().getTime();
             handles.totalGameTime = (gameEndTime - globalState.gameStartTime) / 1000;
             globalState.gameStartTime = false;
@@ -47,19 +50,32 @@ const handles = {
             const log = 2;      // Basis des Logarithmus
             const timeMalus = 20;     // Zeitstrafmultiplikator
 
-            globalState.score += Math.round(base * Math.log(log * cardFactor) - timeMalus * this.totalGameTime);
+            globalState.score += Math.round(base * Math.log(log * cardFactor * 1000 / globalState.waitingTime) - timeMalus * this.totalGameTime);
 
-            document.querySelector('#score').textContent = handles.totalGameTime + ' Sekunden';
-            document.querySelector('#final-score').textContent = 'Punktzahl: ' + globalState.score;
-            document.querySelector('#win-message').style.display = 'block';
-            document.querySelector('#win-message').classList.add('blink');
+
+            document.querySelector('#score').textContent = 'Punktzahl: ' + globalState.score;
+            const winMessage = document.querySelector('#win-message');
+            if (winMessage !== null) {
+                winMessage.style.display = 'block';
+                winMessage.classList.add('blink');
+            }
+            else {
+                const winMessage = domMapping.createElementDynamical(document.querySelector('.Playground'), 'div', 'win-message', 'Gewonnen!');
+                winMessage.id = 'win-message';
+                winMessage.textContent = 'Gewonnen!';
+                winMessage.classList.add('win-message','blink');
+                winMessage.style.display = 'flex';
+                winMessage.style.flexDirection = 'column';
+                const finalScore = domMapping.createElementDynamical(winMessage, 'div', 'final-score', `Punktzahl: ${globalState.score}`);
+            }
+            this.saveScore();
         }
     },
     toggleTimer: function () {
         // Timer für die gesamte Spielzeit starten
         if (!globalState.gameStartTime) {
             globalState.gameStartTime = new Date().getTime();
-            setInterval(() => {
+            globalState.timerId = setInterval(() => {
                 const timeDiff = Date.now() - globalState.gameStartTime;
                 const timeDiffSeconds = Math.round(timeDiff / 1000);
                 document.getElementById('score').textContent = `Laufzeit: ${timeDiffSeconds} Sekunden`;
@@ -99,6 +115,22 @@ const handles = {
             globalState.clickedImage[0].src = `${globalState.getBackgrounds()}backside.png`;
             globalState.clickedImage[1].src = `${globalState.getBackgrounds()}backside.png`;
         }
+    },
+    saveScore: function () {
+        const playerScore = {
+            username: globalState.userName,
+            cards: globalState.gridSize,
+            time: handles.totalGameTime,
+            points: globalState.score
+        };
+        const scores = JSON.parse(localStorage.getItem('scores')) ?? [];
+        scores.push(playerScore);
+        localStorage.setItem('scores', JSON.stringify(scores));
+    },
+    loadScore: function () {
+        const storedScores = JSON.parse(localStorage.getItem("scores")) || [];
+        globalState.sortedScores = storedScores.sort((a, b) => b.points - a.points);
+        return globalState.sortedScores;
     },
 }
 
