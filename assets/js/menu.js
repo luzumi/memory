@@ -30,7 +30,9 @@ export default class Menu {
         this.userName.id = 'user-name';
         this.userName.value = globalState.userName;
 
-        this.cardSlider = new Slider(this.menuContent, {
+        this.sliderDiv = domMapping.createElementDynamical(this.menuContent, 'div', 'slider-div');
+
+        this.cardSlider = new Slider(this.sliderDiv, {
             containerClass: 'slider-container',
             labelText: 'Karten:',
             sliderId: 'cardSlider',
@@ -41,7 +43,7 @@ export default class Menu {
             callback: value => { globalState.gridSize = value; }
         });
 
-        this.setSlider = new Slider(this.menuContent, {
+        this.setSlider = new Slider(this.sliderDiv, {
             containerClass: 'slider-container',
             labelText: 'Set:',
             sliderId: 'setSlider',
@@ -52,7 +54,7 @@ export default class Menu {
             callback: value => { globalState.setId = value; }
         });
 
-        this.difficulty = new Slider(this.menuContent, {
+        this.difficulty = new Slider(this.sliderDiv, {
             containerClass: 'slider-container',
             labelText: 'Schwierigkeit:',
             sliderId: 'difficulty',

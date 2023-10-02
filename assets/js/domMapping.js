@@ -11,7 +11,6 @@ export const domMapping = {
         this.createGrid();
         this.createHeader();
         this.createMenu()
-
     },
     createBody: function () {
         globalState.elements.body = document.querySelector('body');
