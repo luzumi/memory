@@ -5,6 +5,7 @@
     --win-message-color: #c11818;
     --win-message-backgroundcolor: #ceb3b3;
     --border-radius: 4px;
+    --font-family: fantasy;
 }
 
 
@@ -17,11 +18,12 @@ body {
 }
 
 #score {
+    flex-grow: 1;
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: fantasy;
+    font-family: var(--font-family);
     font-weight: 900;
     font-size: 2em;
     color: var(--menu-text-color);
@@ -33,8 +35,9 @@ body {
     width: 100%;
     background-color: var(--menu-background-color);
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
 }
 
 #menu-container {
@@ -62,10 +65,9 @@ body {
     width: 3rem;  /* Breite erhöht */
     height: 3rem; /* Höhe erhöht */
     overflow: hidden;
-    margin: 10px;
+    margin: auto;
     position: relative; /* Absolut positioniert */
-    bottom: 1rem; /* Oben im Elternelement */
-    left: 1rem; /* Rechts im Elternelement */
+
 }
 
 #menu-container {
@@ -92,10 +94,50 @@ body {
     margin-bottom: 20px;
 }
 
-/* Ändere den Slider, um wie ein Mischpult-Rad auszusehen */
-input[type="range"] {
-    /* Dein Styling hier */
+/* Digitale Anzeige */
+.digital-display {
+    font-family: 'Digital-7 Mono', monospace;
+    font-size: 1.5em;
+    text-align: center;
+    display: block;
+    margin-bottom: 10px;
 }
+
+/* Slider */
+input[type="range"] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 25px;
+    background: transparent;
+    cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: 16px solid #000;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background: #fff;
+    cursor: pointer;
+}
+
+input[type="range"]::-moz-range-thumb {
+    border: 16px solid #000;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background: #fff;
+    cursor: pointer;
+}
+
+/* Label */
+.sliderLabel {
+    text-align: center;
+    display: block;
+    margin-top: 20px;
+}
+
 
 .slider-container span {
     /* Digitales Display */

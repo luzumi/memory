@@ -4,7 +4,7 @@ export const globalState = {
   gridSize: 8,
   setId: 1,
   timerId: null,
-  waitingTime: 1000,
+  waitingTime: 1,
   gameStartTime: null,
   lastMousePosition: { x: 0, y: 0 },
   clickedImage: [],
@@ -13,7 +13,6 @@ export const globalState = {
   images: [],
   score: 0,
   sortedScores: 0,
-  getImages: () => `img/set${globalState.setId}/`,
   getBackgrounds: () => `img/set${globalState.setId}/backgrounds/`,
   getImgHeader: () => `img/set${globalState.setId}/header/`,
 };

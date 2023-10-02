@@ -2,6 +2,7 @@
 import {globalState} from './globalState.js';
 import Menu from "./menu.js";
 import {DOM_METHOD} from "./DOM_METHOD.js";
+import imagePool from "./imagePool.js";
 
 export const domMapping = {
     imageHeight: 0,
@@ -61,17 +62,11 @@ export const domMapping = {
     },
     shuffleImages: function () {
         const shuffledImages = [...globalState.images];
-        this.shuffleArray(shuffledImages);
+        imagePool.shuffleArray(shuffledImages);
         const selectedImages = shuffledImages.slice(0, globalState.gridSize / 2);
         const imagePairs = [...selectedImages, ...selectedImages];
-        this.shuffleArray(imagePairs);
+        imagePool.shuffleArray(imagePairs);
         return imagePairs;
-    },
-    shuffleArray: function (array) {
-        for (let i = array.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [array[i], array[j]] = [array[j], array[i]];
-        }
     },
     createElementDynamical: function (element, tag, className = null, content = null, method = DOM_METHOD.APPEND_CHILD) {
         const newElement = document.createElement(tag);
