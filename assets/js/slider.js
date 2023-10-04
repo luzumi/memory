@@ -125,13 +125,9 @@ export class Slider extends HTMLElement {
                     }
                 }
             });
-
-
             svgRoot.addEventListener('mouseup', function (e) {
                 isDragging = false;
             });
-
-
         });
     }
 }

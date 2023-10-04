@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Creator: CorelDRAW X5 -->
+
+<svg
+   style="fill-rule:evenodd;text-rendering:geometricPrecision;image-rendering:optimizeQuality;clip-rule:evenodd;shape-rendering:geometricPrecision"
+   xml:space="preserve"
+   viewBox="0 0 11317 11225"
+   version="1.1"
+   id="svg100"
+   sodipodi:docname="base1412207692.svg"
+   inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"><sodipodi:namedview
+   id="namedview102"
+   pagecolor="#ffffff"
+   bordercolor="#000000"
+   borderopacity="0.25"
+   inkscape:showpageshadow="2"
+   inkscape:pageopacity="0.0"
+   inkscape:pagecheckerboard="0"
+   inkscape:deskcolor="#d1d1d1"
+   showgrid="false"
+   showguides="true"
+   inkscape:zoom="0.18298441"
+   inkscape:cx="3087.6947"
+   inkscape:cy="4415.6767"
+   inkscape:window-width="3840"
+   inkscape:window-height="2054"
+   inkscape:window-x="-11"
+   inkscape:window-y="-11"
+   inkscape:window-maximized="1"
+   inkscape:current-layer="svg100"><sodipodi:guide
+     position="5989.6661,3303.1836"
+     orientation="0,-1"
+     id="guide380"
+     inkscape:locked="false" /><sodipodi:guide
+     position="5657.3362,3098.3756"
+     orientation="1,0"
+     id="guide382"
+     inkscape:locked="false" /></sodipodi:namedview>
+    <defs
+   id="defs55">
+  <style
+   type="text/css"
+   id="style53">
+    .str0 {stroke:black;stroke-width:35.28}
+    .str2 {stroke:black;stroke-width:35.28}
+    .str3 {stroke:black;stroke-width:35.82}
+    .str1 {stroke:black;stroke-width:181.1}
+    .str4 {stroke:red;stroke-width:1.1}
+    .str5 {stroke:red;stroke-width:181.1}
+    .fil0 {fill:none}
+    .fil2 {fill:black}
+    .fil1 {fill:#E6E6E6}
+    .fil3 {fill:white}
+    .fil4 {fill:red}
+
+  </style>
+ </defs>
+    <path
+   class="fil1 str1"
+   d="M 2047,4321 100,2374 C 1523,951 3488,71 5658,71 7828,71 9794,951 11216,2374 L 9269,4321 C 8345,3397 7068,2825 5658,2825 4248,2825 2971,3397 2047,4321 Z"
+   id="path59" />
+    <circle
+   cy="7932"
+   cx="5658"
+   r="3222"
+   class="fil1 str1"
+   id="circle61" />
+    <polygon
+   id="circle"
+   points="5895,5526 5995,5663 6130,5561 6216,5707 6360,5618 6431,5772 6584,5698 6639,5858 6798,5800 6838,5964 7002,5922 7025,6089 7192,6063 7199,6232 7368,6222 7358,6391 7527,6398 7501,6565 7669,6589 7626,6753 7791,6792 7732,6951 7892,7007 7818,7159 7972,7230 7884,7375 8030,7460 7928,7595 8064,7695 7950,7819 8076,7932 7950,8045 8064,8169 7928,8269 8030,8404 7884,8489 7972,8634 7818,8705 7892,8857 7732,8913 7791,9072 7626,9111 7669,9275 7501,9299 7527,9466 7358,9473 7368,9642 7199,9632 7192,9801 7025,9775 7002,9942 6838,9900 6798,10064 6639,10006 6584,10166 6431,10092 6360,10246 6216,10157 6130,10303 5995,10201 5895,10338 5771,10223 5658,10350 5546,10223 5421,10338 5322,10201 5187,10303 5101,10157 4956,10246 4885,10092 4733,10166 4677,10006 4518,10064 4479,9900 4315,9942 4292,9775 4124,9801 4118,9632 3949,9642 3958,9473 3789,9466 3816,9299 3648,9275 3690,9111 3526,9072 3584,8913 3424,8857 3498,8705 3345,8634 3433,8489 3287,8404 3389,8269 3252,8169 3367,8045 3240,7932 3367,7819 3252,7695 3389,7595 3287,7460 3433,7375 3345,7230 3498,7159 3424,7007 3584,6951 3526,6792 3690,6753 3648,6589 3816,6565 3789,6398 3958,6391 3949,6222 4118,6232 4124,6063 4292,6089 4315,5922 4479,5964 4518,5800 4677,5858 4733,5698 4885,5772 4956,5618 5101,5707 5187,5561 5322,5663 5421,5526 5546,5641 5658,5514 5771,5641 "
+   class="fil3 str0" />
+    <line
+   y1="2727.8816"
+   x2="250.19717"
+   x1="726.20117"
+   y2="2229.4309"
+   class="fil0 str1 line25"
+   id="line25_1"
+   inkscape:transform-center-x="5171.2881"
+   inkscape:transform-center-y="-5433.5375" />
+    <path
+   id="arrow25_1"
+   class="fil4 str4 arrow25"
+   d="M 2018.6365,4339.6553 C 1088.9854,3236.7145 404.84388,2387.1684 404.84388,2387.1684 c 0,0 820.42082,720.1436 1882.79412,1694.2714 -95.8068,85.1486 -185.8048,172.7284 -269.0015,258.2155 z"
+   sodipodi:nodetypes="cccc"
+   inkscape:transform-center-x="4296.8431"
+   inkscape:transform-center-y="-4528.1066" />
+    <line
+   y1="7921.019"
+   x2="2509.6741"
+   x1="3685.6736"
+   y2="7919.7832"
+   class="fil0 str5 marker25"
+   id="marker25_1"
+   inkscape:transform-center-y="-2.6904535"
+   inkscape:transform-center-x="2560.3261" /></svg>
