@@ -76,7 +76,7 @@ const handles = {
         if (!globalState.gameStartTime) {
             globalState.gameStartTime = new Date().getTime();
             globalState.timerId = setInterval(() => {
-                console.log('Timer läuft', globalState.timerId);
+                // console.log('Timer läuft', globalState.timerId);
                 const timeDiff = Date.now() - globalState.gameStartTime;
                 const timeDiffSeconds = Math.round(timeDiff / 1000);
                 document.getElementById('score').textContent = `Laufzeit: ${timeDiffSeconds} Sekunden`;
@@ -136,6 +136,7 @@ const handles = {
     },
     resetGame() {
         let elements = globalState.elements.playground;
+        console.log(globalState.gridSize)
         if (globalState.timerId) {
             clearInterval(globalState.timerId);
             globalState.timerId = null;

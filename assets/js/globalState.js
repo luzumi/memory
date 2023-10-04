@@ -1,7 +1,7 @@
 export const globalState = {
   elements: {},
   userName: 'Unbekannt',
-  gridSize: 8,
+  gridSize: 16,
   setId: 1,
   timerId: null,
   waitingTime: 1,
@@ -10,6 +10,7 @@ export const globalState = {
   clickedImage: [],
   allFounded: false,
   globalGameTime: 0,
+  lineCoordinates: {},
   images: [],
   score: 0,
   sortedScores: 0,
