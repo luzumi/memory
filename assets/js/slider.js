@@ -11,12 +11,21 @@ export class Slider extends HTMLElement {
 
     createSliderElements() {
         this.sliderContainer = domMapping.createElementDynamical(this.parent, 'div', this.options.containerClass);
+
+        this.sliderLabel = domMapping.createElementDynamical(
+            this.sliderContainer,
+            'label',
+            'sliderLabel',
+            this.options.labelText + this.options.value
+        );
+        this.sliderLabel.setAttribute('z-index', '22222222', this.options.sliderId);
+
         this.sliderObject = domMapping.createElementDynamical(this.sliderContainer, 'object', this.options.containerClass + '-iframe');
         this.sliderObject.data = 'assets/others/base1412207692.svg';
         this.sliderObject.height = '70px';
         this.sliderObject.width = '70px';
-        this.sliderLabel = domMapping.createElementDynamical(this.sliderObject, 'label', 'sliderLabel', this.options.labelText);
     }
+
 
     addLinesToSVG(svgRoot, Cx, Cy, R) {
         const startTheta = 225 * Math.PI / 180;
@@ -58,7 +67,7 @@ export class Slider extends HTMLElement {
         const anglePerStep =
             Math.ceil((endAngle - startAngle) / (this.options.max - (this.options.max % this.options.step)));
 
-        // Vergrößern der Schrittweite um 20%
+        // Vergrößern der Schrittweite um 35% und Abziehen von 8.1 Grad
         const adjustedAnglePerStep = anglePerStep * 1.35 - 8.1/this.options.max;
 
         // Berechnung des Rotationswinkels
@@ -97,42 +106,67 @@ export class Slider extends HTMLElement {
     }
 
     setupEventListeners(svgRoot, Cx, Cy, R) {
+        // Selbstreferenz für den Zugriff im Event Listener
         const self = this;
+
+        // Event-Listener für das 'mousedown'-Ereignis auf dem SVG-Root-Element
         svgRoot.addEventListener('mousedown', function (e) {
+
+            // Erstelle einen SVG-Punkt und setze seine x, y Koordinaten
             const point = svgRoot.createSVGPoint();
             point.x = e.clientX;
             point.y = e.clientY;
 
+            // Hole die aktuelle Transformationsmatrix des SVG-Roots
             const ctm = svgRoot.getScreenCTM();
+            // Invertiere die Transformationsmatrix
             const inverseCTM = ctm.inverse();
+
+            // Transformiere den Punkt in den lokalen Koordinatenraum des SVG
             const localPoint = point.matrixTransform(inverseCTM);
+
+            // Berechne die Abweichung des Punkts von der Mitte des Kreises
             const dx = localPoint.x - Cx;
             const dy = localPoint.y - Cy;
+
+            // Berechne den Winkel zwischen dem Punkt und der x-Achse
             let angle = Math.atan2(dy, dx);
+
+            // Konvertiere den Winkel in Grad und verschiebe ihn, sodass er im Bereich [0,360] liegt
             let angleDeg = (angle * 180 / Math.PI + 270) % 360;
+
+            // Ermittle die Anzahl der Sektoren und den Winkel pro Sektor
             const numSectors = self.options.max;
             const anglePerSector = 270 / numSectors;
-            const tolerance = 5;
+
+            // Toleranz für die Auswahl eines Sektors
+            const tolerance = 0;
+
+            // Bestimme den ausgewählten Sektor
             let selectedSector = Math.floor((angleDeg + tolerance) / anglePerSector);
             if (selectedSector >= numSectors) {
                 selectedSector = 0;
             }
-              // Ausgewählter Wert ist Sektor + 1
-            // Update des globalen Zustands
+
+            // Aktualisiere den ausgewählten Wert und den globalen Zustand
             self.options.value = Math.ceil((selectedSector + 1) / self.options.step) * self.options.step;
             if (self.options.callback) {
                 self.options.callback(self.options.value);
             }
 
-            // Markerposition setzen basierend auf dem globalen Zustand
+            // Aktualisiere die Marker- und Pfeilpositionen basierend auf dem ausgewählten Wert
             self.setInitialMarkerPosition(svgRoot, Cx, Cy);
             self.setArrowPosition(
                 svgRoot.querySelector("#arrow25_1"),
                 self.options.value - 1,
                 Cx, Cy, R
-                );
+            );
+
+            // Aktualisiere den Label-Text mit dem ausgewählten Wert
+            self.sliderLabel.innerText = self.options.labelText + self.options.value;
         });
     }
+
 
 
 

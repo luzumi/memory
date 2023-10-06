@@ -136,7 +136,7 @@ const handles = {
     },
     resetGame() {
         let elements = globalState.elements.playground;
-        console.log(globalState.gridSize)
+        console.log('reset', globalState.images)
         if (globalState.timerId) {
             clearInterval(globalState.timerId);
             globalState.timerId = null;
@@ -153,6 +153,8 @@ const handles = {
         // Schritt 2: globalState zurücksetzen
         globalState.clickedImage = [];
         globalState.score = 0;
+
+
 
 
         // Schritt 3: Neues Grid erstellen und Event-Listener hinzufügen

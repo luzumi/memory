@@ -87,8 +87,8 @@ body {
 
 .slider-container {
     display: flex;
-    flex-direction: row; /* nebeneinander */
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
     margin-bottom: 20px;
     border: none;
@@ -116,7 +116,12 @@ body {
     display: flex;
     flex-direction: row;
     width: 100%;
-    margin: 20px;
+
+}
+.sliderLabel {
+    text-align: center;
+    display: block;
+    margin-top: 1px; /* Optional: Abstand zwischen dem Slider und dem Label */
 }
 
 input[type="range"] {

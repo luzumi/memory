@@ -1,6 +1,7 @@
 export const globalState = {
   elements: {},
   userName: 'Unbekannt',
+  maxGridSize: 16,
   gridSize: 16,
   setId: 1,
   timerId: null,

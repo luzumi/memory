@@ -16,20 +16,38 @@ export default class Menu {
         this.rankingContainer = null;
         this.toggleRankingButton = null;
     }
-
     initialize() {
+        // Initialisiere das Menü und dessen Elemente
+        this.initMenuElements();
+        // Füge Event-Listener hinzu
+        this.addEventListeners();
+    }
+
+    initMenuElements() {
         const runtimeContainer = document.querySelector('#runtime-container');
-
-        this.menuButton = domMapping.createElementDynamical(runtimeContainer, 'div', 'menu-button', '☰');
+        this.menuButton = this.createElement('div', 'menu-button', '☰', runtimeContainer);
         this.menuDiv = document.querySelector('#menu-container');
-        this.menuContent = domMapping.createElementDynamical(this.menuDiv, 'div', 'menu-content');
+        this.menuContent = this.createElement('div', 'menu-content', null, this.menuDiv);
 
+        // Benutzername-Feld
+        this.initUserNameField();
+        // Slider für Karten, Set und Schwierigkeit
+        this.initSliders();
+        // Buttons für Neustart und Rangliste
+        this.initControlButtons();
+    }
+
+    initUserNameField() {
+        // Initialisiere das Benutzername-Feld
         this.userNameLabel = domMapping.createElementDynamical(this.menuContent, 'label', null, 'Benutzername:');
         this.userNameLabel.for = 'user-name';
         this.userName = domMapping.createElementDynamical(this.menuContent, 'input', 'user-name', globalState.userName);
         this.userName.id = 'user-name';
         this.userName.value = globalState.userName;
+    }
 
+    initSliders() {
+        // Initialisiere die Slider für Kartenanzahl, Set und Schwierigkeit
         this.sliderDiv = domMapping.createElementDynamical(this.menuContent, 'div', 'slider-div');
 
         this.cardSlider = new Slider(this.sliderDiv, {
@@ -56,7 +74,7 @@ export default class Menu {
 
         this.difficulty = new Slider(this.sliderDiv, {
             containerClass: 'slider-container',
-            labelText: 'Schwierigkeit:',
+            labelText: 'Geschwindigkeit:',
             sliderId: 'difficulty',
             min: 1,
             max: 3,
@@ -64,18 +82,26 @@ export default class Menu {
             value: globalState.waitingTime,
             callback: value => { globalState.waitingTime = value; }
         });
+    }
 
-        // Erstelle einen Container für die Rangliste im Menü
+    initControlButtons() {
+        // Initialisiere den Neustart- und den Ranglisten-Button
         this.rankingContainer = domMapping.createElementDynamical(this.menuContent, 'div', 'ranking-container');
         this.toggleRankingButton = domMapping.createElementDynamical(this.rankingContainer, 'button', 'toggle-ranking-button', 'Rangliste anzeigen');
         this.restartButton = domMapping.createElementDynamical(this.menuContent, 'button', 'restart-button', 'Neustart');
 
-        this.addEventListeners();
     }
 
-
+    createElement(tag, className, innerText, parent) {
+        const element = document.createElement(tag);
+        if (className) element.className = className;
+        if (innerText) element.innerText = innerText;
+        parent.appendChild(element);
+        return element;
+    }
 
     addEventListeners() {
+        // Fügt Event-Listener zu den verschiedenen Menüelementen hinzu
         this.userName.addEventListener('input', () => {
             globalState.userName = this.userName.value;
         });
@@ -96,7 +122,7 @@ export default class Menu {
 
         this.restartButton.addEventListener('click', () => {
             globalState.elements.grid = null;
-
+            // globalState.images = ImagePool.createImagePool(globalState.setId);
             this.menuContent.style.display = 'none';
             this.menuDiv.style.display = 'none'; // Fügen Sie diese Zeile hinzu
             handles.resetGame();
@@ -117,11 +143,5 @@ export default class Menu {
                 this.isTableVisible = false;
             }
         });
-
-
     }
-
-
-
-
 };

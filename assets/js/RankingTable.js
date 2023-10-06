@@ -1,70 +1,62 @@
-import {domMapping} from "./domMapping.js";
-import {globalState} from "./globalState.js";
+import { globalState } from "./globalState.js";
 import handles from "./handles.js";
 
 export default class RankingTable {
-
     constructor(parentContainer) {
         this.parentContainer = parentContainer;
-        this.paginationContainer= null;
         this.currentPageIndex = 0;
         this.createTable();
     }
 
+    // Erstellt die Gesamttabelle inklusive Header, Body und Pagination
     createTable() {
-        this.rankingTable = domMapping.createElementDynamical(
-            this.parentContainer,
-            'table',
-            'ranking-table'
-        );
+        this.rankingTable = this.createElement('table', 'ranking-table', this.parentContainer);
         this.createHeader();
         this.createBody();
         this.createPagination();
     }
 
+    // Erstellt den Header der Tabelle
     createHeader() {
-        const thead = domMapping.createElementDynamical(this.rankingTable, 'thead');
-        const headerRow = domMapping.createElementDynamical(thead, 'tr');
+        const thead = this.createElement('thead', null, this.rankingTable);
+        const headerRow = this.createElement('tr', null, thead);
         ['Rang', 'Benutzername', 'Karten', 'Zeit', 'Punkte'].forEach(text => {
-            const th = domMapping.createElementDynamical(headerRow, 'th');
-            th.innerText = text;
+            this.createElement('th', null, headerRow, text);
         });
     }
 
+    // Erstellt den Body der Tabelle
     createBody() {
-        const tbody = domMapping.createElementDynamical(this.rankingTable, 'tbody');
-        const startIndex = this.currentPageIndex * 10;
-        const endIndex = startIndex + 10;
+        const tbody = this.createElement('tbody', null, this.rankingTable);
+        // Lade die sortierten Scores
         handles.loadScore();
-        console.log(globalState.sortedScores)
+
         if (Array.isArray(globalState.sortedScores)) {
+            const startIndex = this.currentPageIndex * 10;
+            const endIndex = startIndex + 10;
             const slicedScores = globalState.sortedScores.slice(startIndex, endIndex);
+
             slicedScores.forEach((score, index) => {
-                const row = domMapping.createElementDynamical(tbody, 'tr');
-                const actualRank = startIndex + index + 1; // Berücksichtigt die aktuelle Seite
+                const row = this.createElement('tr', null, tbody);
+                const actualRank = startIndex + index + 1;
                 [actualRank, score.username, score.cards, score.time, score.points].forEach(text => {
-                    const td = domMapping.createElementDynamical(row, 'td');
-                    td.innerText = text;
+                    this.createElement('td', null, row, text);
                 });
             });
         }
     }
 
-
+    // Erstellt die Pagination-Buttons
     createPagination() {
         if (!this.paginationContainer) {
-            this.paginationContainer = domMapping.createElementDynamical(this.parentContainer, 'div', 'pagination-container');
-            const prevButton = domMapping.createElementDynamical(this.paginationContainer, 'button', null, 'Vorherige Seite');
-            const nextButton = domMapping.createElementDynamical(this.paginationContainer, 'button', null, 'Nächste Seite');
-
-            prevButton.addEventListener('click', () => {
+            this.paginationContainer = this.createElement('div', 'pagination-container', this.parentContainer);
+            this.createPaginationButton('Vorherige Seite', () => {
                 if (this.currentPageIndex > 0) {
                     this.currentPageIndex--;
                     this.refreshTable();
                 }
             });
-
-            nextButton.addEventListener('click', () => {
+            this.createPaginationButton('Nächste Seite', () => {
                 const totalScores = globalState.sortedScores.length;
                 if (this.currentPageIndex < Math.floor(totalScores / 10)) {
                     this.currentPageIndex++;
@@ -74,26 +66,41 @@ export default class RankingTable {
         }
     }
 
+    // Hilfsfunktion zur Erstellung eines Elements
+    createElement(tag, className, parent, innerText = null) {
+        const element = document.createElement(tag);
+        if (className) element.className = className;
+        if (innerText) element.innerText = innerText;
+        parent.appendChild(element);
+        return element;
+    }
+
+    // Hilfsfunktion zur Erstellung eines Pagination-Buttons
+    createPaginationButton(label, clickHandler) {
+        const button = this.createElement('button', null, this.paginationContainer, label);
+        button.addEventListener('click', clickHandler);
+    }
+
+    // Aktualisiert die Tabelle
     refreshTable() {
         if (this.rankingTable) this.rankingTable.remove();
         if (this.paginationContainer) {
             while (this.paginationContainer.firstChild) {
-                this.paginationContainer.removeChild(this.paginationContainer.firstChild);
+                this.paginationContainer.firstChild.remove();
             }
-            this.paginationContainer.remove();
-
-            this.paginationContainer = null; // Setze es zurück auf null, damit es beim nächsten Aufruf von createPagination wieder erstellt wird
+            this.paginationContainer = null;
         }
         this.createTable();
     }
 
+    // Zeigt die Tabelle an
     showTable() {
         this.refreshTable();
         this.rankingTable.style.display = 'table';
     }
 
+    // Verbirgt die Tabelle
     hideTable() {
         this.rankingTable.style.display = 'none';
-        document.querySelectorAll('.pagination-container button').forEach((button) => button.remove());
     }
 }
